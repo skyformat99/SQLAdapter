@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBAccess", "DBAccess\DBAccess.csproj", "{37103112-2BE0-47BE-ABF5-F7860DCAD506}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLServerAccessDemo", "SQLServerAccessDemo\SQLServerAccessDemo.csproj", "{22F3190C-B591-4F49-B337-C6770F44F788}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37103112-2BE0-47BE-ABF5-F7860DCAD506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37103112-2BE0-47BE-ABF5-F7860DCAD506}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37103112-2BE0-47BE-ABF5-F7860DCAD506}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37103112-2BE0-47BE-ABF5-F7860DCAD506}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22F3190C-B591-4F49-B337-C6770F44F788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22F3190C-B591-4F49-B337-C6770F44F788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22F3190C-B591-4F49-B337-C6770F44F788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22F3190C-B591-4F49-B337-C6770F44F788}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {68A98AD3-8E86-4643-9EBD-7C7AFAED3CF5}
+	EndGlobalSection
+EndGlobal

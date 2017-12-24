@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "Result";
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<style>
+    .table-condensed {
+        font-size: 10px;
+    }
+
+    th {
+        background-color: #4b9d6b;
+        color: #fff;
+    }
+    body {
+        font: 1.2em normal Arial,sans-serif;
+        color: #34495E;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 5px 0;
+    }
+
+    .fixed {
+        top: 0;
+        position: fixed;
+        width: auto;
+        display: none;
+        border: none;
+    }
+
+    .scrollMore {
+        margin-top: 400px;
+    }
+
+    .up {
+        cursor: pointer;
+    }
+</style>
+
+<h4 class="text-primary">執行結果：</h4>
+
+@if (Session["tempParameters"] != null)
+{
+    <ul>
+        @foreach (System.Data.SqlClient.SqlParameter p in (System.Data.SqlClient.SqlParameter[])Session["tempParameters"])
+        {
+            if (p.Direction == System.Data.ParameterDirection.Output)
+            {
+                <li>@p.ParameterName : @p.Value</li>
+            }
+        }
+    </ul>
+}
+<br />
+
+
+@if (Model != null)
+{
+    int colCount = Model.Columns.Count;
+
+    <table class="table table-bordered table-hover table-condensed table-striped">
+        <thead>
+            <tr>
+                @for (int i = 0; i <= colCount - 1; i++)
+                {
+                    <th>@Model.Columns[i]</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (System.Data.DataRow row in Model.Rows)
+            {
+                <tr>
+                    @for (int i = 0; i <= colCount - 1; i++)
+                    {
+                        <td>@row[i].ToString()</td>
+                    }
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    <span>頁數　</span>
+    for (int pageC = 1; pageC <= ViewBag.TotalPage; pageC++)
+    {
+
+        <span>@Html.ActionLink(pageC.ToString(), "Result", new { page = pageC, totalPage = ViewBag.TotalPage })　</span>
+        if (pageC > 500)
+        {
+            //顯示太多頁數了 效能會很慢
+            <span><a href="#">...</a></span>
+            return;
+        }
+    }
+    <span>　共 @ViewBag.TotalRow 列</span>
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+
+
+    (function ($) {
+        $.fn.fixMe = function () {
+            return this.each(function () {
+                var $this = $(this),
+                   $t_fixed;
+                function init() {
+                    $this.wrap('<div />');
+                    $t_fixed = $this.clone();
+                    $t_fixed.find("tbody").remove().end().addClass("fixed").insertBefore($this);
+                    resizeFixed();
+                }
+                function resizeFixed() {
+                    $t_fixed.find("th").each(function (index) {
+                        $(this).css("width", $this.find("th").eq(index).outerWidth() + "px");
+                    });
+                }
+                function scrollFixed() {
+                    var offset = $(this).scrollTop(),
+                    tableOffsetTop = $this.offset().top,
+                    tableOffsetBottom = tableOffsetTop + $this.height() - $this.find("thead").height();
+                    if (offset < tableOffsetTop || offset > tableOffsetBottom)
+                        $t_fixed.hide();
+                    else if (offset >= tableOffsetTop && offset <= tableOffsetBottom && $t_fixed.is(":hidden"))
+                        $t_fixed.show();
+                }
+                $(window).resize(resizeFixed);
+                $(window).scroll(scrollFixed);
+                init();
+            });
+        };
+    })(jQuery);
+
+    $(document).ready(function () {
+        $("table").fixMe();
+        $(".up").click(function () {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 2000);
+        });
+    });
+</script>
+

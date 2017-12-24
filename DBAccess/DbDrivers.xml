@@ -1,0 +1,5 @@
+﻿<?xml version="1.0"?>
+<entries>
+  <entry key="SQLSERVER" value="DBAccess.Core.SQLServerDriver"/>
+  <entry key="NULL" value ="DBAccess.Core.NULLDbDriver"/>
+</entries>
